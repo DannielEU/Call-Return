@@ -1,18 +1,17 @@
 package ejercicio1;
-import java.io.*;
-import java.net.*;
-import java.net.URI;
+import java.net.URL;
 
 public class URLReader {
     public static void main(String[] args) throws Exception {
-        URI urls = new URI("http://www.google.com/");
-        System.out.println(urls.getAuthority());
-        System.out.println(urls.getHost());
-        System.out.println(urls.getPort());
-        System.out.println(urls.getPath());
-        System.out.println(urls.getQuery());
-        System.out.println(urls.toURL().getFile());
-        System.out.println(urls.toURL().getProtocol());
-        System.out.println(urls.toURL().getRef());
+        URL url = new URL("http://www.google.com:80/search?q=java#resultado");
+
+        System.out.println("Protocol: " + url.getProtocol());
+        System.out.println("Authority: " + url.getAuthority());
+        System.out.println("Host: " + url.getHost());
+        System.out.println("Port: " + url.getPort());
+        System.out.println("Path: " + url.getPath());
+        System.out.println("Query: " + url.getQuery());
+        System.out.println("File: " + url.getFile());
+        System.out.println("Ref: " + url.getRef());
     }
 }

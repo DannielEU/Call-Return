@@ -14,9 +14,8 @@ public class Cliente extends Conexion {
     }
 
     public void startCliente() {
-        try {
-            DataOutputStream salida = new DataOutputStream(cs.getOutputStream());
-            DataInputStream entrada = new DataInputStream(cs.getInputStream());
+        try (DataOutputStream salida = new DataOutputStream(cs.getOutputStream());
+             DataInputStream entrada = new DataInputStream(cs.getInputStream())) {
 
             System.out.print("Ingrese un número: ");
             String mensaje = scanner.nextLine();

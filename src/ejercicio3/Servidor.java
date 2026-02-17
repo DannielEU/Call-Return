@@ -27,6 +27,9 @@ public class Servidor extends Conexion {
             System.out.println("Número recibido: " + numero);
             System.out.println("Resultado enviado: " + resultado);
 
+            entrada.close();
+            salida.close();
+            cs.close();
             ss.close();
 
         } catch (Exception e) {
