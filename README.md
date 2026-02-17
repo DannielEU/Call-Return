@@ -1,6 +1,44 @@
 # Call-Return
 ## Introducción a esquemas de nombres, redes, clientes y servicios con Java
 
+## Inicio rápido (Ejercicios 1, 2 y 3)
+
+Para evitar errores de rutas al compilar en Windows, Se ejecutan los comandos desde la raíz del proyecto:
+
+### CMD
+
+```bat
+cd /d C:\Users\maria\OneDrive\Documentos\arsw\Labs\Lab3\Call-Return
+javac -d out src\ejercicio1\URLReader.java src\ejercicio2\URLReader.java src\ejercicio3\*.java
+
+java -cp out ejercicio1.URLReader
+java -cp out ejercicio2.URLReader
+```
+
+Para el ejercicio 3, use dos terminales:
+
+```bat
+java -cp out ejercicio3.Servermain
+java -cp out ejercicio3.Clientemain
+```
+
+### PowerShell
+
+```powershell
+Set-Location "C:\Users\maria\OneDrive\Documentos\arsw\Labs\Lab3\Call-Return"
+javac -d out src/ejercicio1/URLReader.java src/ejercicio2/URLReader.java src/ejercicio3/*.java
+
+java -cp out ejercicio1.URLReader
+java -cp out ejercicio2.URLReader
+```
+
+Para el ejercicio 3, use dos terminales:
+
+```powershell
+java -cp out ejercicio3.Servermain
+java -cp out ejercicio3.Clientemain
+```
+
 ## 1. Reconocimiento
 
 Parte de los contenidos y códigos de este taller es t án   basados en los contenidos de los 
