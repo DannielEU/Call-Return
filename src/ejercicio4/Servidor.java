@@ -23,19 +23,23 @@ public class Servidor extends Conexion {
                     System.out.println("Cliente cerró la conexión");
                     break;
                 }
-                if (mensaje.startsWith("fun")) {
-                    mensaje = mensaje.substring(4);
-
-                    this.changeOperation(mensaje);
-                    salida.writeUTF("Operación cambiada. ");
-                }else {
-                    double resultado = makeoperation(mensaje);
-
+                if (mensaje.startsWith("fun:")) {
+                    String nuevaFuncion = mensaje.substring(4).trim();
+                    if (this.changeOperation(nuevaFuncion)) {
+                        salida.writeUTF("Operación cambiada a " + this.function);
+                    } else {
+                        salida.writeUTF("Operación no válida. Use fun:sin, fun:cos o fun:tan");
+                    }
+                } else {
+                    double resultado = makeOperation(mensaje);
                     salida.writeUTF("Resultado: " + resultado);
-
                     System.out.println("Resultado enviado: " + resultado);
                 }
             }
+
+            entrada.close();
+            salida.close();
+            cs.close();
             ss.close();
 
         } catch (Exception e) {
@@ -43,20 +47,25 @@ public class Servidor extends Conexion {
             System.out.println("Error del servidor. ");
         }
     }
-    private void changeOperation(String mensaje){
-        if(mensaje.startsWith("sin")){
+    private boolean changeOperation(String mensaje){
+        if (mensaje.equalsIgnoreCase("sin")) {
             this.function = "sin";
-        } else if (mensaje.startsWith("cos")) {
+            System.out.println("Cambio de función a: " + this.function);
+            return true;
+        } else if (mensaje.equalsIgnoreCase("cos")) {
             this.function = "cos";
-        } else {
+            System.out.println("Cambio de función a: " + this.function);
+            return true;
+        } else if (mensaje.equalsIgnoreCase("tan")) {
             this.function = "tan";
+            System.out.println("Cambio de función a: " + this.function);
+            return true;
         }
-        System.out.println("cambio de función a: " + this.function);
+        return false;
     }
 
-    private double makeoperation(String mensaje){
-        double number = Float.parseFloat(mensaje);
-        number = Math.toRadians(number);
+    private double makeOperation(String mensaje){
+        double number = Double.parseDouble(mensaje);
         return switch (this.function) {
             case "sin" -> Math.sin(number);
             case "cos" -> Math.cos(number);

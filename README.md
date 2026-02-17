@@ -39,6 +39,44 @@ java -cp out ejercicio3.Servermain
 java -cp out ejercicio3.Clientemain
 ```
 
+## Completados: (1, 3 y 4.3.2)
+
+- **Ejercicio 1** (`src/ejercicio1/URLReader.java`): imprime los 8 datos del objeto URL:
+  `getProtocol`, `getAuthority`, `getHost`, `getPort`, `getPath`, `getQuery`, `getFile`, `getRef`.
+- **Ejercicio 3.1** (`src/ejercicio3`): cliente-servidor por sockets donde el servidor recibe un número y responde su cuadrado.
+- **Ejercicio 4.3.2** (`src/ejercicio4`):
+  - operación por defecto: `cos`
+  - cambio de operación con comandos: `fun:sin`, `fun:cos`, `fun:tan`
+  - cálculo trigonométrico sobre el valor recibido en **radianes**.
+
+### Compilar y ejecutar ejercicio 4
+
+```bat
+javac -d out src\ejercicio4\*.java
+```
+
+Servidor (terminal 1):
+
+```bat
+java -cp out ejercicio4.Servermain
+```
+
+Cliente (terminal 2):
+
+```bat
+java -cp out ejercicio4.Clientemain
+```
+
+Ejemplo de uso en cliente:
+
+```text
+0
+1.57079632679
+fun:sin
+0
+exit
+```
+
 ## 1. Reconocimiento
 
 Parte de los contenidos y códigos de este taller es t án   basados en los contenidos de los 
