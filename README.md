@@ -105,6 +105,34 @@ Para validar 404:
 
 - `http://127.0.0.1:35000/no-existe.png`
 
+## Funcionamiento ejercicio 6 (Servidor Web con contenido estático)
+
+El ejercicio 6 implementa un servidor HTTP secuencial (no concurrente) que:
+
+- atiende múltiples solicitudes seguidas en el puerto `35000`.
+- sirve archivos desde la carpeta `src/ejercicio6`.
+- cuando la ruta es `/`, responde el archivo `index.html`.
+- retorna `404 Not Found` si el archivo no existe.
+- define tipo de contenido (MIME) para html e imágenes.
+
+### Compilar y ejecutar
+
+```bat
+javac -d out src\ejercicio6\HttpServer.java
+java -cp out ejercicio6.HttpServer
+```
+
+### Pruebas rápidas
+
+Abrir en navegador:
+
+- `http://127.0.0.1:35000/`
+- `http://127.0.0.1:35000/index.html`
+
+Para validar 404:
+
+- `http://127.0.0.1:35000/no-existe.jpg`
+
 ## 1. Reconocimiento
 
 Parte de los contenidos y códigos de este taller es t án   basados en los contenidos de los 
