@@ -77,6 +77,34 @@ fun:sin
 exit
 ```
 
+## Funcionamiento ejercicio 5 (Servidor Web)
+
+El ejercicio 5 implementa un servidor HTTP secuencial (no concurrente) que:
+
+- atiende múltiples solicitudes seguidas en el puerto `35000`.
+- sirve archivos desde la carpeta `src/ejercicio5`.
+- cuando la ruta es `/`, responde el archivo `index.html`.
+- retorna `404 Not Found` si el archivo no existe.
+- soporta archivos HTML e imágenes (jpg, jpeg, png, gif, svg, ico).
+
+### Compilar y ejecutar
+
+```bat
+javac -d out src\ejercicio5\HttpServer.java
+java -cp out ejercicio5.HttpServer
+```
+
+### Pruebas rápidas
+
+Abrir en navegador:
+
+- `http://127.0.0.1:35000/`
+- `http://127.0.0.1:35000/index.html`
+
+Para validar 404:
+
+- `http://127.0.0.1:35000/no-existe.png`
+
 ## 1. Reconocimiento
 
 Parte de los contenidos y códigos de este taller es t án   basados en los contenidos de los 
