@@ -12,11 +12,21 @@ import java.net.Socket;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Ejercicio 6: servidor HTTP básico para archivos estáticos.
+ * Sirve recursos del directorio del ejercicio y maneja errores comunes.
+ */
 public class HttpServer {
 
     private static final int PORT = 35000;
     private static final File BASE_DIR = new File("src/ejercicio6");
 
+    /**
+     * Inicia el servidor y atiende clientes de forma indefinida.
+     *
+     * @param args argumentos de línea de comandos (no usados)
+     * @throws IOException si falla la creación del socket servidor
+     */
     public static void main(String[] args) throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Servidor listo en puerto " + PORT);
@@ -31,6 +41,12 @@ public class HttpServer {
         }
     }
 
+    /**
+     * Procesa una solicitud HTTP de un cliente y responde el recurso pedido.
+     *
+     * @param clientSocket socket asociado al cliente
+     * @throws IOException si ocurre un error de lectura o escritura
+     */
     private static void handleClient(Socket clientSocket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         OutputStream rawOut = new BufferedOutputStream(clientSocket.getOutputStream());
@@ -83,6 +99,15 @@ public class HttpServer {
         rawOut.flush();
     }
 
+    /**
+     * Envía una respuesta HTTP de texto.
+     *
+     * @param out flujo de salida del cliente
+     * @param status estado HTTP (por ejemplo, "400 Bad Request")
+     * @param contentType tipo de contenido de la respuesta
+     * @param body contenido del cuerpo de la respuesta
+     * @throws IOException si falla la escritura en el socket
+     */
     private static void sendTextResponse(OutputStream out, String status, String contentType, String body) throws IOException {
         byte[] bodyBytes = body.getBytes(StandardCharsets.UTF_8);
         String headers = "HTTP/1.1 " + status + "\r\n"
@@ -94,6 +119,12 @@ public class HttpServer {
         out.flush();
     }
 
+    /**
+     * Resuelve el tipo MIME de un archivo según su extensión.
+     *
+     * @param fileName nombre del archivo
+     * @return tipo MIME compatible con HTTP
+     */
     private static String getContentType(String fileName) {
         String name = fileName.toLowerCase();
         if (name.endsWith(".html") || name.endsWith(".htm")) return "text/html; charset=UTF-8";

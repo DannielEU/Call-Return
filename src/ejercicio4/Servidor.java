@@ -4,13 +4,25 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * Servidor del ejercicio 4.
+ * Recibe comandos para cambiar operación trigonométrica y evalúa números.
+ */
 public class Servidor extends Conexion {
     private String function = "cos";
 
+    /**
+     * Construye el servidor y habilita el puerto de escucha.
+     *
+     * @throws IOException si falla la apertura del socket servidor
+     */
     public Servidor() throws IOException {
         super("servidor");
     }
 
+    /**
+     * Atiende al cliente en ciclo continuo hasta recibir comando de salida.
+     */
     public void startServer() {
         try {
             cs = ss.accept();
@@ -47,6 +59,13 @@ public class Servidor extends Conexion {
             System.out.println("Error del servidor. ");
         }
     }
+
+    /**
+     * Cambia la operación trigonométrica activa del servidor.
+     *
+     * @param mensaje nombre de la función: sin, cos o tan
+     * @return true si el cambio fue válido; false en otro caso
+     */
     private boolean changeOperation(String mensaje){
         if (mensaje.equalsIgnoreCase("sin")) {
             this.function = "sin";
@@ -64,6 +83,12 @@ public class Servidor extends Conexion {
         return false;
     }
 
+    /**
+     * Aplica la operación trigonométrica seleccionada al número recibido.
+     *
+     * @param mensaje valor numérico en formato texto
+     * @return resultado de la operación
+     */
     private double makeOperation(String mensaje){
         double number = Double.parseDouble(mensaje);
         return switch (this.function) {

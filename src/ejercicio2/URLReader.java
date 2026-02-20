@@ -8,7 +8,19 @@ import java.net.http.HttpResponse;
 import java.net.URI;
 import java.util.Scanner;
 
+/**
+ * Ejercicio 2: solicita una URL al usuario, consulta su contenido HTTP
+ * y guarda la respuesta en un archivo local.
+ */
 public class URLReader {
+    /**
+     * Punto de entrada del programa.
+     * Lee una URL desde consola, realiza una petición GET y escribe el
+     * contenido obtenido en el archivo "resultado.html".
+     *
+     * @param args argumentos de línea de comandos (no usados)
+     * @throws Exception si ocurre un error de lectura, red o escritura
+     */
     public static void main(String[] args) throws Exception {
     try (Scanner scanner = new Scanner(System.in)) {
         System.out.print("Ingrese una URL: ");
